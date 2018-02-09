@@ -1,0 +1,14 @@
+NO.	Allowed Weight	Actual Weight	status
+______________________________________________________________________
+ 0            1575            4460	OVERLOADED
+ 1            2090            1390	READY TO GO
+ 2            4231            1296	READY TO GO
+ 3            1530            1423	READY TO GO
+ 4            3288            3625	OVERLOADED
+ 5            3442            1271	READY TO GO
+ 6            1578            2184	OVERLOADED
+ 7            3215            3202	READY TO GO
+ 8            4686            3098	READY TO GO
+ 9              16            3727	OVERLOADED
+10              16            4875	OVERLOADED
+11              16            3963	READY TO GO

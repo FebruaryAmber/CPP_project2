@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18900\viewh13700\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 //programmer: Paulo Dacaya\
+//program:    \
+\
+#include <iostream>\
+#include <ctime> \
+\
+using namespace std;\
+\
+int getRand(int min, int max); //prototype\
+\
+int main() \{\
+  int guessedNum = 0;\
+  int randNum = 0;\
+  int lowest = 0;\
+  int highest = 0; \
+  int c = 1;\
+  \
+  //pick range\
+  cout << "\\nPick a range of numbers: "; \
+  cin >> lowest >> highest;\
+\
+  \
+  randNum = getRand(lowest, highest);\
+\
+  cout << "\\nGuess random number: ";\
+  cin >> guessedNum;\
+  \
+  while(!cin.good() || guessedNum > highest || guessedNum < lowest) \{\
+    cout << "\\nError: try again please." << endl;\
+    cout << "\\nGuess random number: ";\
+    cin.clear();\
+    cin.ignore(100, '\\n');\
+    cin >> guessedNum;\
+  \}\
+  \
+  while(guessedNum <= highest && guessedNum >= lowest && guessedNum != randNum) \{ \
+    if(randNum > guessedNum) \{\
+      cout << "Wrong, Guess higher: ";\
+      cin >> guessedNum;\
+    \} else \{ \
+      cout << "Wrong, Guess lower: ";\
+      cin >> guessedNum;\
+    \}\
+    c++;\
+  \} \
+  \
+  cout << "\\nYou are correct! Total attempts: " << c << endl << endl;\
+  \
+  cin.get();\
+  return 0; \
+\} \
+\
+int getRand(int min, int max) \{\
+  int genRand = 0; \
+  srand(time(0));\
+  genRand = rand()%(max-min+1)+min;\
+  return genRand;\
+\}}

@@ -1,0 +1,135 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 //Programmer: Paulo Dacaya\
+//Program:    Trucks\
+\
+#include <iostream>\
+#include <fstream>\
+#include <iomanip>\
+#include <string>\
+#include <ctime>\
+\
+using namespace std;\
+\
+//function prototypes.\
+void makeTextFile(); \
+int total();\
+void fillArray(int arr[], int size);\
+\
+int main() \{\
+	\
+	int totalTrucks = 0;\
+	ofstream outFileTable;\
+	\
+	srand(time(0));\
+	\
+	//create 12 random number file.\
+	makeTextFile();\
+	//assign total amount of numbers in the file. \
+	totalTrucks = total();\
+	\
+	int actualWeights[12] = \{0\};\
+	int allowedWeights[12] = \{0\};\
+	\
+	//fill actualWeights array with random numbers.\
+	for(int i = 0; i < totalTrucks; i++) \{\
+		actualWeights[i] = rand()%4001 + 1000;\
+	\}\
+	\
+	//fill array with numbers from the file.\
+	fillArray(allowedWeights, totalTrucks);\
+	\
+	//print array in screen and in file.\
+	outFileTable.open("table.txt", ios::out);\
+	if (outFileTable.fail()) \{\
+		cout << "error: table.txt file was not able to open." << endl;\
+		return 1;\
+	\}\
+	\
+	cout << "There are " << totalTrucks << " in the company." << endl << endl;\
+	cout << setw(5) << "No." << setw(25) << "Allowed Weight" << setw(25) << "Actual Weight" << endl;\
+	cout << "---------------------------------------------------------\\n\\n";\
+	for(int i = 0; i < totalTrucks; i++) \{\
+	cout << setw(4) << i + 1 << "." << setw(20) << allowedWeights[i] << setw(25) << actualWeights[i] << endl;\
+	\}\
+	\
+	outFileTable << "There are " << totalTrucks << " in the company." << endl << endl;\
+	outFileTable << setw(5) << "No." << setw(25) << "Allowed Weight" << setw(25) << "Actual Weight" << endl;\
+	outFileTable << "---------------------------------------------------------\\n\\n";\
+	for(int i = 0; i < totalTrucks; i++) \{\
+	outFileTable << setw(4) << i + 1 << "." << setw(20) << allowedWeights[i] << setw(25) << actualWeights[i] << endl;\
+	\}\
+	\
+	cin.get();\
+	return 0; \
+\}\
+\
+void makeTextFile() \{\
+	\
+	int randNum;\
+	ofstream outFile;\
+	srand(time(0)); // set seed \
+	outFile.open("limits.txt", ios::out);\
+	\
+	//validate if file opens. \
+	if(outFile.fail()) \{\
+		cout << "error: limits.txt file was unable to open.";\
+	\}\
+	\
+	//fill file with 12 random numbers.\
+	for(int i = 0; i < 12; i++) \{\
+		randNum = rand()%4001 + 1000;\
+		outFile << randNum << " "; \
+	\}//end for loop.\
+	outFile.close(); //close the file. \
+\}\
+\
+int total() \{\
+	int counter = 0;\
+	int limitValue = 0;\
+	ifstream inFile;\
+	inFile.open("limits.txt", ios::in);\
+	\
+	//veryify if file opens \
+	if(inFile.fail()) \{\
+		cout << "error: limits.txt was not found, unable to open." << endl;\
+		return 1; \
+	\}\
+	\
+	while(!inFile.eof()) \{\
+		inFile >> limitValue;\
+		inFile.ignore(2); //ignores the space between numbers.\
+		counter++;\
+	\}//end while loop \
+	//return to the start of the file.\
+	inFile.clear();\
+	inFile.seekg(0, ios::beg);\
+	inFile.close(); //close the file.\
+	\
+	//return the amount of numbers in the file.\
+	return counter;\
+	\}\
+	\
+void fillArray(int arr[], int size) \{\
+	\
+	ifstream inFile;\
+	int num = 0;\
+	inFile.open("limits.txt", ios::in);\
+	\
+if(inFile.fail()) \{\
+		cout << "error: limits.txt was not found, unable to open." << endl;\
+	\}\
+	\
+	for(int i = 0; i < size; i++) \{\
+		inFile >> num;\
+		inFile.ignore(1); //ignores the space inbetween numbers.\
+		arr[i] = num; //fill array with numbers from limits.txt.\
+	\}//end for loop. \
+	inFile.close();\
+\}//end of function.\
+}

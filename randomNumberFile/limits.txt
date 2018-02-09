@@ -1,0 +1,15 @@
+how big do you want the array?  6
+81
+77
+99
+50
+63
+66
+Largest to smallest 
+99
+81
+77
+66
+63
+50
+

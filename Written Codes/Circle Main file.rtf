@@ -1,0 +1,89 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red0\green0\blue0;\red100\green56\blue32;
+\red196\green26\blue22;\red170\green13\blue145;\red63\green110\blue116;\red92\green38\blue153;\red28\green0\blue207;
+\red46\green13\blue110;\red38\green71\blue75;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgenericrgb\c0\c0\c0;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c11000\c0\c81000;
+\csgenericrgb\c18100\c5200\c43100;\csgenericrgb\c14900\c27800\c29400;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28200\viewh16300\viewkind0
+\deftab272
+\pard\tx272\pardeftab272\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //programmer: Paulo Dacaya\cf3 \
+\cf2 //program:    Xcode C++ Programming\cf3 \
+\
+\cf2 //include header file.\cf3 \
+\cf4 #include \cf5 "Circle.h"\cf4 \
+\cf3 \
+\cf2 //include libaries.\cf3 \
+\cf4 #include \cf5 <iomanip>\cf4 \
+\cf3 \
+\cf2 //include prototypes.\cf3 \
+\cf6 void\cf3  getColours (\cf7 Circle\cf3 &, \cf7 Circle\cf3 &, \cf8 string\cf3 &, \cf8 string\cf3 &);\
+\
+\
+\cf6 int\cf3  main() \{\
+  \
+  \cf6 double\cf3  r1 = \cf9 0.0\cf3 ;\
+  \cf6 double\cf3  r2 = \cf9 0.0\cf3 ;\
+  \cf8 string\cf3  c1 = \cf5 ""\cf3 ;\
+  \cf8 string\cf3  c2 = \cf5 ""\cf3 ;\
+  \cf8 string\cf3  pick = \cf5 ""\cf3 ;\
+  \
+  \cf8 cout\cf3  << \cf10 setw\cf3 (\cf9 35\cf3 ) << \cf5 "Circle calculator and comparisons\\n"\cf3 ;\
+  \cf8 cout\cf3  << \cf10 setw\cf3 (\cf9 35\cf3 ) << \cf5 "---------------------------------\\n"\cf3 ;\
+  \
+  \cf8 cout\cf3  << \cf5 "\\nRadius of first circle (m): "\cf3 ;\
+  \cf8 cin\cf3  >> r1;\
+  \cf8 cout\cf3  << \cf5 "Radius of second  circle (m): "\cf3 ;\
+  \cf8 cin\cf3  >> r2;\
+  \cf8 cin\cf3 .\cf10 ignore\cf3 (\cf9 100\cf3 , \cf9 '\\n'\cf3 );\
+  \
+  \cf2 //decalare objects using class 'Circle' paramterized constructor.\cf3 \
+  \cf7 Circle\cf3  firstRadius(r1);\
+  \cf7 Circle\cf3  secondRadius(r2);\
+  \
+  \cf8 cout\cf3  << \cf5 "\\nWould you like the circles to have a colour [y/n]? "\cf3 ;\
+  \cf10 getline\cf3 (\cf8 cin\cf3 , pick);\
+  \cf6 if\cf3  (pick == \cf5 "y"\cf3  || pick == \cf5 "Y"\cf3 ) \{\
+    \cf11 getColours\cf3 (firstRadius, secondRadius, c1, c2);\
+    \cf8 cout\cf3  << \cf10 endl\cf3  << \cf10 endl\cf3 ;\
+  \}\
+  \cf6 else\cf3  \{\
+    \cf8 cout\cf3  << \cf5 "The colours will default to white."\cf3 ;\
+    \cf8 cin\cf3 .\cf10 get\cf3 ();\
+    \cf8 cout\cf3  << \cf10 endl\cf3  << \cf10 endl\cf3 ;\
+  \}\
+  \
+  \cf8 cout\cf3  << \cf5 "Final Order\\n"\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "-----------\\n"\cf3 ;\
+  \
+  \cf8 cout\cf3  << \cf5 "Radius 1: "\cf3  << firstRadius.\cf11 getRadius\cf3 () << \cf5 " meters"\cf3  << \cf10 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Colour 1: "\cf3  << firstRadius.\cf11 getColour\cf3 () << \cf10 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Radius 2: "\cf3  << secondRadius.\cf11 getRadius\cf3 () << \cf5 " meters"\cf3  << \cf10 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Colour 2: "\cf3  << secondRadius.\cf11 getColour\cf3 () << \cf10 endl\cf3  << \cf10 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Area of Radius 1: "\cf3  << firstRadius.\cf11 calcArea\cf3 () << \cf5 " meters squared"\cf3  << \cf10 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Area of Radius 2: "\cf3  << secondRadius.\cf11 calcArea\cf3 () << \cf5 " meters squared"\cf3  << \cf10 endl\cf3  << \cf10 endl\cf3 ;\
+  \
+  \cf6 if\cf3  (firstRadius.\cf11 isLargerCircle\cf3 (secondRadius)) \{\
+    \cf8 cout\cf3  << \cf5 "Radius 1 is larger than radius 2."\cf3  << \cf10 endl\cf3 ;\
+  \}\
+  \cf6 else\cf3  \{\
+    \cf8 cout\cf3  << \cf5 "Radius 2 is larger than radius 1."\cf3  << \cf10 endl\cf3 ;\
+  \}\
+  \
+  \
+	\cf6 return\cf3  \cf9 0\cf3 ;\
+\}\
+\
+\cf6 void\cf3  getColours (\cf7 Circle\cf3 & colour1, \cf7 Circle\cf3 & colour2, \cf8 string\cf3 & col1, \cf8 string\cf3 & col2) \{\
+  \cf8 cout\cf3  << \cf5 "colour of the first radius: "\cf3 ;\
+  \cf10 getline\cf3 (\cf8 cin\cf3 , col1);\
+  \cf8 cout\cf3  << \cf5 "colour of the second radius: "\cf3 ;\
+  \cf10 getline\cf3 (\cf8 cin\cf3 , col2);\
+  \cf2 //set variables into object.\cf3 \
+  colour1.\cf11 setColour\cf3 (col1);\
+  colour2.\cf11 setColour\cf3 (col2);\
+\}\
+}

@@ -1,0 +1,96 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red0\green0\blue0;\red100\green56\blue32;
+\red196\green26\blue22;\red170\green13\blue145;\red92\green38\blue153;\red28\green0\blue207;\red63\green110\blue116;
+\red46\green13\blue110;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgenericrgb\c0\c0\c0;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c11000\c0\c81000;\csgenericrgb\c24700\c43100\c45600;
+\csgenericrgb\c18100\c5200\c43100;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13860\viewh16300\viewkind0
+\deftab272
+\pard\tx272\pardeftab272\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //\cf3 \
+\cf2 //  Resistors.h\cf3 \
+\cf2 //  C++programming\cf3 \
+\
+\cf2 //  Resistors.h\cf3 \
+\cf2 //  C++XcodeProgramming\cf3 \
+\
+\cf4 #include \cf5 <iostream>\cf4 \
+#include \cf5 <ctime>\cf4 \
+#include \cf5 <cstdlib>\cf4 \
+#include \cf5 <iomanip>\cf4 \
+\cf3 \
+\cf6 using\cf3  \cf6 namespace\cf3  \cf7 std\cf3 ;\
+\
+\cf6 class\cf3  Resistors \{\
+\cf6 public\cf3 :\
+  Resistors(); \cf2 //default constructor.\cf3 \
+  \
+  \cf2 //access methods.\cf3 \
+  \cf6 void\cf3  setResistors();\
+  \cf6 void\cf3  setResistors(\cf6 double\cf3  newRes[]);\
+  \cf6 double\cf3  connectedSeries();\
+  \cf6 double\cf3  connectedParallel();\
+  \cf6 void\cf3  display();\
+  \
+\cf6 private\cf3 :\
+  \cf6 double\cf3  resistor[\cf8 6\cf3 ];\
+\};\
+\
+\cf2 //function definitions.\cf3 \
+\
+\cf2 //Setting the variables to a NULL state (default constructor).\cf3 \
+\cf9 Resistors\cf3 ::Resistors() \{\
+  \cf6 for\cf3 (\cf6 int\cf3  i = \cf8 0\cf3 ; i < \cf8 6\cf3 ; i++)\
+    \cf9 resistor\cf3 [i] = \cf8 0.0\cf3 ;\
+\}\
+\
+\cf2 //assign random numbers between 0 - 100 for each array element.\cf3 \
+\cf6 void\cf3  \cf9 Resistors\cf3 ::setResistors() \{\
+  \cf10 srand\cf3 (\cf10 time\cf3 (\cf6 NULL\cf3 ));\
+  \cf6 for\cf3 (\cf6 int\cf3  i = \cf8 0\cf3 ; i < \cf8 6\cf3 ; i++)\
+    \cf9 resistor\cf3 [i] = \cf10 rand\cf3 ()%\cf8 101\cf3 ;\
+\}\
+\
+\cf2 //Assigns values from an external array to\cf3 \
+\cf2 //to the elements of the array of resistors\cf3 \
+\cf6 void\cf3  \cf9 Resistors\cf3 ::setResistors(\cf6 double\cf3  newRes[]) \{\
+  \cf6 for\cf3 (\cf6 int\cf3  i = \cf8 0\cf3 ; i < \cf8 6\cf3 ; i++)\
+    \cf9 resistor\cf3 [i] = newRes[i];\
+\}\
+\
+\cf2 //calculate a total of connected series\cf3 \
+\cf6 double\cf3  \cf9 Resistors\cf3 ::connectedSeries() \{\
+  \cf6 double\cf3  total = \cf8 0.0\cf3 ;\
+  \cf6 for\cf3 (\cf6 int\cf3  i = \cf8 0\cf3 ; i < \cf8 6\cf3 ; i++)\
+    total += \cf9 resistor\cf3 [i];\
+  \cf6 return\cf3  total;\
+\}\
+\
+\cf2 //calcualte a total of connected parrellel.\cf3 \
+\cf6 double\cf3  \cf9 Resistors\cf3 ::connectedParallel() \{\
+  \cf6 double\cf3  total = \cf8 0.0\cf3 ;\
+  \cf6 for\cf3 (\cf6 int\cf3  i = \cf8 0\cf3 ; i < \cf8 6\cf3 ; i++)\
+    total += (\cf8 1\cf3 /\cf9 resistor\cf3 [i]);\
+    total = \cf8 1\cf3 /total;\
+  \cf6 return\cf3  total;\
+\}\
+\
+\cf6 void\cf3  Resistors::display() \{\
+  cout << \cf5 "Resistor values: "\cf3 ;\
+  \cf6 for\cf3 (\cf6 int\cf3  i = \cf8 0\cf3 ; i < \cf8 6\cf3 ; i++)\
+    cout << resistor[i] << \cf5 " "\cf3 ;\
+  \
+  cout << fixed << setprecision(\cf8 2\cf3 ) << endl;\
+  cout << \cf5 "Resistors in Parallel: "\cf3  << connectedParallel() << \cf5 " Ohms."\cf3  << endl;\
+  cout << \cf5 "Resistors in Series: "\cf3  << connectedSeries() << \cf5 " Ohms."\cf3  << endl;\
+\}\
+\
+\
+\
+\
+\
+\
+}

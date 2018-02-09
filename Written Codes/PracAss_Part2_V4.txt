@@ -1,0 +1,42 @@
+#include <cstdlib>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+    int year = 2017;
+    double popa, popb, ratea, rateb;
+    int a,b ;
+
+
+    cout << " Input pop a:";
+    cin >> popa;
+    cout << "\n Input pop b:";
+    cin >> popb;
+    cout << "\n input rate a";
+    cin >> ratea;
+    cout << "\n input rate b";
+    cin >> rateb;
+
+    if(ratea<rateb){
+        cout << "gay";    
+    }
+    else
+        cout << "year\ttown a\t\ttown b\n";
+        
+        while(popa<=popb){
+        year=year+1;
+        popa=popa+popa*(ratea/100);
+        popb=popb+popb*(rateb/100);
+
+        
+        cout << year  <<"\t"<<  popa <<"\t\t" <<  popb<< endl;    
+        }
+        cout<< "population wiill increase by" << year<<endl;
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}

@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28300\viewh15280\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 //Programmer: Paulo Dacaya\
+//Program:\
+\
+#include <iostream>\
+#include <cmath>\
+#include <fstream>\
+\
+//function protypes\
+double degree_to_radians(double degrees);\
+\
+//global variables.\
+const double g = 9.81; //gravity\
+\
+using namespace std;\
+\
+int main() \{\
+	\
+	const double V0 = 10.0;\
+	const double H0 = 10.0;\
+	const double ANGLE1 = 20.0;\
+	const double ANGLE2 = 40.0;\
+	double h1 = 0.0;\
+	double h2 = 0.0;\
+	double sn1 = 0.0; //sin() 1.\
+	double sn2 = 0.0; //sin() 2.\
+	double tm = 0.0; \
+	\
+	ofstream outFile;\
+	outFile.open("projectile.csv", ios::out);\
+	\
+	if(outFile.fail()) \{\
+		cout << "\\nerror: projectile.csv file was unable to open." << endl;\
+		cout << "This program will now terminate." << endl << endl;\
+		return 1;\
+	\}\
+	\
+	sn1 = sin(degree_to_radians(ANGLE1)); //sin(20)\
+	sn2 = sin(degree_to_radians(ANGLE2)); //sin(40)\
+	\
+		do \{\
+		//calculate h1 & h2 \
+		h1 = H0 + V0*sn1*tm - ((g*pow(tm,2))/2);\
+		h2 = H0 + V0*sn2*tm - ((g*pow(tm,2))/2);\
+		\
+		if(h1 < 0.0) \
+			h1 = 0.0;\
+		if(h2 < 0.0)\
+			h2 = 0.0;\
+		\
+		outFile << tm << ", " << h1 << ", " << h2 << endl;\
+		\
+		tm += 0.005;\
+	\} while(h2 != 0.0);\
+	\
+	outFile.close(); //close the file.\
+	\
+	return 0;\
+\}\
+\
+double degree_to_radians(double degrees) \{\
+	double radians = 0.0;\
+	radians = degrees * (M_PI/180);\
+	return radians;\
+\}}

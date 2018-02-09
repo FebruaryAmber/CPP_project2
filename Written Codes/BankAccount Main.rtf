@@ -1,0 +1,106 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red0\green0\blue0;\red100\green56\blue32;
+\red196\green26\blue22;\red170\green13\blue145;\red28\green0\blue207;\red92\green38\blue153;\red46\green13\blue110;
+\red63\green110\blue116;\red38\green71\blue75;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgenericrgb\c0\c0\c0;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c11000\c0\c81000;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c18100\c5200\c43100;
+\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c14900\c27800\c29400;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab272
+\pard\tx272\pardeftab272\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //programmer: Paulo Dacaya\cf3 \
+\cf2 //program:    Xcode C++ Programming\cf3 \
+\
+\cf2 //include header file.\cf3 \
+\cf4 #include \cf5 "BankAccount.h"\cf4 \
+\cf3 \
+\cf2 //include library files.\cf3 \
+\cf4 #include \cf5 <iomanip>\cf4 \
+#include \cf5 <cstdlib>\cf4 \
+\cf3 \
+\cf6 int\cf3  main() \{\
+  \
+  \cf6 int\cf3  pick = \cf7 0\cf3 ;\
+  \cf8 string\cf3  cPass = \cf5 ""\cf3 ;\
+  \cf8 string\cf3  ePass = \cf5 ""\cf3 ;\
+  \cf6 int\cf3  aNum = \cf7 0\cf3 ;\
+  \cf6 double\cf3  blance = \cf7 0.0\cf3 ;\
+\
+  \
+  \cf2 //creating a new account.\cf3 \
+  \cf8 cout\cf3  << \cf5 "Setup your account."\cf3  << \cf9 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Account number: "\cf3 ;\
+  \cf8 cin\cf3  >> aNum;\
+  \cf8 cin\cf3 .\cf9 ignore\cf3 (\cf7 100\cf3 , \cf7 '\\n'\cf3 );\
+  \cf8 cout\cf3  << \cf5 "Create Password: "\cf3 ;\
+  \cf9 getline\cf3 (\cf8 cin\cf3 , cPass);\
+  \cf8 cout\cf3  << \cf5 "Starting balance: $"\cf3 ;\
+  \cf8 cin\cf3  >> blance;\
+  \cf8 cin\cf3 .\cf9 ignore\cf3 (\cf7 100\cf3 , \cf7 '\\n'\cf3 );\
+  \cf2 //input data into object.\cf3 \
+  \cf10 BankAccount\cf3  newAccount(aNum, blance, cPass);\
+  \
+  \cf9 system\cf3 (\cf5 "clear"\cf3 ); \cf2 //clear the screen.\cf3 \
+  \
+  \cf2 //verify single factor authentication before accessing account.\cf3 \
+  \cf8 cout\cf3  << \cf5 "Account "\cf3  << newAccount.\cf11 getAccountNum\cf3 () << \cf5 ":"\cf3  << \cf9 endl\cf3 ;\
+  \cf8 cout\cf3  << \cf5 "Password  >"\cf3 ;\
+  \cf9 getline\cf3 (\cf8 cin\cf3 , ePass);\
+  \cf6 if\cf3 (newAccount.\cf11 checkPassword\cf3 (ePass) == \cf6 false\cf3 )\
+    \cf6 return\cf3  \cf7 1\cf3 ;\
+  \
+  \cf2 //clear screen is authentication is successful. (1 attempt)\cf3 \
+  \cf9 system\cf3 (\cf5 "clear"\cf3 ); \cf2 //clear screen.\cf3 \
+  \
+  \cf6 while\cf3 (\cf7 1\cf3 ) \{\
+    \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 35\cf3 ) << \cf5 "Welcomes to your Bank account\\n"\cf3 ;\
+    \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 35\cf3 ) << \cf5 "-----------------------------\\n"\cf3 ;\
+  \
+    \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 16\cf3 ) << \cf5 "(1)withdraw"\cf3  << \cf9 setw\cf3 (\cf7 18\cf3 ) << \cf9 right\cf3  << \cf5 "show balance(3)"\cf3  << \cf9 endl\cf3 ;\
+    \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 15\cf3 ) << \cf5 "(2)deposit"\cf3  << \cf9 setw\cf3 (\cf7 19\cf3 ) << \cf9 right\cf3  << \cf5 "exit(4)"\cf3  << \cf9 endl\cf3  << \cf9 endl\cf3 ;\
+  \
+    \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 6\cf3 ) << \cf5 ">"\cf3 ;\
+    \cf8 cin\cf3  >> pick;\
+    \cf8 cin\cf3 .\cf9 ignore\cf3 (\cf7 100\cf3 , \cf7 '\\n'\cf3 );\
+    \
+    \cf6 double\cf3  withdrawAmount = \cf7 0.0\cf3 ;\
+    \cf6 double\cf3  disAmount = \cf7 0.0\cf3 ;\
+    \
+    \cf6 switch\cf3  (pick) \{\
+      \cf6 case\cf3  \cf7 1\cf3 :\
+        \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 6\cf3 ) << \cf5 "$"\cf3 ;\
+        \cf8 cin\cf3  >> withdrawAmount;\
+        newAccount.\cf11 withdraw\cf3 (withdrawAmount);\
+        \cf8 cin\cf3 .\cf9 get\cf3 ();\
+        \cf9 system\cf3 (\cf5 "clear"\cf3 ); \cf2 //clear screen.\cf3 \
+        \cf6 break\cf3 ;\
+      \cf6 case\cf3  \cf7 2\cf3 :\
+        \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 6\cf3 ) << \cf5 "$"\cf3 ;\
+        \cf8 cin\cf3  >> disAmount;\
+        newAccount.\cf11 deposit\cf3 (disAmount);\
+        \cf8 cin\cf3 .\cf9 get\cf3 ();\
+        \cf9 system\cf3 (\cf5 "clear"\cf3 ); \cf2 //clear screen.\cf3 \
+        \cf6 break\cf3 ;\
+      \cf6 case\cf3  \cf7 3\cf3 :\
+        \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 23\cf3 ) << \cf5 "current balance: $"\cf3  << newAccount.\cf11 getBalance\cf3 () << \cf9 endl\cf3 ;\
+        \cf8 cin\cf3 .\cf9 get\cf3 ();\
+        \cf9 system\cf3 (\cf5 "clear"\cf3 ); \cf2 //clear screen.\cf3 \
+        \cf6 break\cf3 ;\
+      \cf6 case\cf3  \cf7 4\cf3 :\
+        \cf6 return\cf3  \cf7 1\cf3 ;\
+        \cf6 break\cf3 ;\
+      \cf6 default\cf3 :\
+        \cf8 cout\cf3  << \cf9 setw\cf3 (\cf7 33\cf3 ) << \cf5 "Incorrect choice. try again."\cf3 ;\
+        \cf8 cin\cf3 .\cf9 get\cf3 ();\
+        \cf9 system\cf3 (\cf5 "clear"\cf3 ); \cf2 //clear screen.\cf3 \
+        \cf6 break\cf3 ;\
+    \}\
+  \}\
+  \
+  \
+  \
+	\cf6 return\cf3  \cf7 0\cf3 ;\
+\}\
+}

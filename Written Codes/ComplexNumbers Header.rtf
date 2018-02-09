@@ -1,0 +1,128 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red0\green0\blue0;\red100\green56\blue32;
+\red196\green26\blue22;\red170\green13\blue145;\red92\green38\blue153;\red63\green110\blue116;\red28\green0\blue207;
+\red38\green71\blue75;\red46\green13\blue110;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgenericrgb\c0\c0\c0;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c11000\c0\c81000;
+\csgenericrgb\c14900\c27800\c29400;\csgenericrgb\c18100\c5200\c43100;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13860\viewh16300\viewkind0
+\deftab272
+\pard\tx272\pardeftab272\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //\cf3 \
+\cf2 //  ComplexNumber.h\cf3 \
+\cf2 //  C++programming\cf3 \
+\
+\cf4 #include \cf5 <iostream>\cf4 \
+#include \cf5 <cmath>\cf4 \
+#include \cf5 <iomanip>\cf4 \
+\cf3 \
+\cf6 using\cf3  \cf6 namespace\cf3  \cf7 std\cf3 ;\
+\
+\cf6 class\cf3  ComplexNumber \{\
+\cf6 public\cf3 :\
+  ComplexNumber(); \cf2 //default constructor.\cf3 \
+  ComplexNumber(\cf6 double\cf3 , \cf6 double\cf3 ); \cf2 //parameterized constructor.\cf3 \
+  \cf6 void\cf3  setCNumber(\cf6 double\cf3 , \cf6 double\cf3 ); \cf2 //mutator function.\cf3 \
+  \
+  \cf2 //accessor methods. declared "const" cannot change the private variables.\cf3 \
+  \cf6 double\cf3  getRe() \cf6 const\cf3 ;\
+  \cf6 double\cf3  getIm() \cf6 const\cf3 ;\
+  \cf6 double\cf3  modulus() \cf6 const\cf3 ;\
+  \cf6 double\cf3  arguments() \cf6 const\cf3 ;\
+  \cf6 void\cf3  print() \cf6 const\cf3 ;\
+  \cf6 void\cf3  printPolar() \cf6 const\cf3 ;\
+  \
+  \cf2 //Function that adds two complex numbers and return\cf3 \
+  \cf2 //result as a new complex number\cf3 \
+  \cf8 ComplexNumber\cf3  divide(\cf8 ComplexNumber\cf3  z1);\
+  \
+\cf6 private\cf3 :\
+  \cf6 double\cf3  re; \cf2 //real part of the complex number.\cf3 \
+  \cf6 double\cf3  im; \cf2 //imaginary part of the complex number.\cf3 \
+\};\
+\
+\cf2 //function defintions.\cf3 \
+\cf2 //default constructor.\cf3 \
+\cf8 ComplexNumber\cf3 ::ComplexNumber() \{\
+  \cf8 re\cf3  = \cf9 0.0\cf3 ;\
+  \cf8 im\cf3  = \cf9 0.0\cf3 ;\
+\}\
+\
+\cf2 //mutator function.\cf3 \
+\cf6 void\cf3  \cf8 ComplexNumber\cf3 ::setCNumber(\cf6 double\cf3  x, \cf6 double\cf3  y) \{\
+  \cf8 re\cf3  = x;\
+  \cf8 im\cf3  = y;\
+\}\
+\
+\cf2 //parameterized constructor.\cf3 \
+\cf8 ComplexNumber\cf3 ::ComplexNumber(\cf6 double\cf3  real, \cf6 double\cf3  imagine) \{\
+  \cf10 setCNumber\cf3 (real, imagine);\
+\}\
+\
+\cf6 double\cf3  \cf8 ComplexNumber\cf3 ::getRe() \cf6 const\cf3  \{\
+  \cf6 return\cf3  \cf8 re\cf3 ;\
+\}\
+\
+\cf6 double\cf3  \cf8 ComplexNumber\cf3 ::getIm() \cf6 const\cf3  \{\
+  \cf6 return\cf3  \cf8 im\cf3 ;\
+\}\
+\
+\cf2 //the modulus is the pythagorus of imaginary and real numnber.\cf3 \
+\cf6 double\cf3  \cf8 ComplexNumber\cf3 ::modulus() \cf6 const\cf3  \{\
+  \cf6 return\cf3  \cf11 sqrt\cf3 (\cf11 pow\cf3 (\cf8 re\cf3 , \cf9 2.0\cf3 ) + \cf11 pow\cf3 (\cf8 im\cf3 , \cf9 2.0\cf3 ));\
+\}\
+\
+\cf2 // argument is the angle of the complex number.\cf3 \
+\cf6 double\cf3  \cf8 ComplexNumber\cf3 ::arguments() \cf6 const\cf3  \{\
+  \cf6 double\cf3  radians = \cf9 0.0\cf3 ;\
+  radians = \cf11 atan\cf3 (\cf8 im\cf3 /\cf8 re\cf3 );\
+  \cf2 //return in degrees.\cf3 \
+  \cf6 return\cf3  radians * (\cf9 180\cf3 /\cf4 M_PI\cf3 );\
+\}\
+\
+\cf2 //print the complex number.\cf3 \
+\cf6 void\cf3  \cf8 ComplexNumber\cf3 ::print() \cf6 const\cf3  \{\
+  \cf7 cout\cf3  << \cf11 fixed\cf3  << \cf11 setprecision\cf3 (\cf9 2\cf3 ) << \cf5 "z = "\cf3  << \cf8 re\cf3  << \cf5 " + j"\cf3  << \cf8 im\cf3  << \cf11 endl\cf3 ;\
+\}\
+\
+\cf2 //display polar arrangement.\cf3 \
+\cf6 void\cf3  \cf8 ComplexNumber\cf3 ::printPolar() \cf6 const\cf3  \{\
+  \cf7 cout\cf3  << \cf11 fixed\cf3  << \cf11 setprecision\cf3 (\cf9 2\cf3 ) << \cf5 "z = "\cf3 \
+  << \cf10 modulus\cf3 () << \cf5 "/_"\cf3  << \cf5 "("\cf3  << \cf10 arguments\cf3 () << \cf5 ")"\cf3 \
+  << \cf5 "   or"\cf3  << \cf11 endl\cf3 ;\
+  \
+  \
+  \cf7 cout\cf3  << \cf5 "z = "\cf3  << \cf10 modulus\cf3 ()\
+  << \cf5 "(cos"\cf3  << \cf10 arguments\cf3 () << \cf5 " + jsin"\cf3  << \cf10 arguments\cf3 () << \cf5 ")"\cf3  << \cf11 endl\cf3 ;\
+\}\
+\
+\cf8 ComplexNumber\cf3  \cf8 ComplexNumber\cf3 ::divide(\cf8 ComplexNumber\cf3  z1) \{\
+  \cf2 //decalare new object to return the rew object.\cf3 \
+  \cf8 ComplexNumber\cf3  z3;\
+  \
+  \cf2 //set numbers in new object and devide in parameteres.\cf3 \
+  z3.\cf10 setCNumber\cf3 ((\cf8 re\cf3 *z1.\cf10 getRe\cf3 () + \cf8 im\cf3 *z1.\cf10 getIm\cf3 ()), (\cf8 re\cf3 *z1.\cf10 getIm\cf3 () - \cf8 im\cf3 *z1.\cf10 getRe\cf3 ()));\
+  \
+  \cf2 //return object.\cf3 \
+  \cf6 return\cf3  z3;\
+\}\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14200\viewh15560\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //programmer: Paulo Dacaya\
+\
+#include <iostream>\
+#include <cstdlib>\
+#include <ctime>\
+#include <iomanip>\
+\
+using namespace std;\
+\
+//gobal constants\
+const int MIN = 1;\
+const int MAX = 45;\
+const int ARR_SIZE = 6;\
+\
+//prototypes\
+bool duplicates(int num, int arr[], int size);\
+void getRow (int row[]);\
+void printRow(int row[]);\
+void printTicket(); \
+\
+\
+int main() \{\
+  int rows[ARR_SIZE];\
+  srand(time(0));\
+  \
+  cout << "\\n\\n" << setw(33) << "---Your Tattslotto Ticket---\\n\\n";\
+  //loop numbers for 12 rows \
+  for (int i = 0; i < 12; i++) \{\
+    getRow(rows);\
+    printRow(rows);\
+  \}\
+  \
+  cout << endl;\
+  cin.get();\
+  return 0;\
+\}\
+\
+//returns booleen value if duplicates are found in array.\
+bool duplicates(int num, int arr[], int size) \{\
+  for (int i = 0; i < size; i++) \{\
+    if (arr[i] == num)\
+      return true; \
+  \}\
+  return false; \
+\}\
+\
+void getRow (int row[]) \{\
+  int number; //local variable\
+  for (int i = 0; i < ARR_SIZE; i++) \{\
+    number = rand()%(MAX-MIN + 1) + MIN;\
+    while (duplicates(number, row, i)) \{\
+      number = rand()%(MAX-MIN + 1) + MIN;\
+    \}//end while loop\
+    row[i] = number;\
+  \}//end for loop\
+\}//end function \
+\
+void printRow(int row[]) \{\
+  for(int i = 0; i < ARR_SIZE; i++) \{\
+    cout << setw(5) << row[i];\
+  \}\
+  cout << endl;\
+\}\
+\
+}
